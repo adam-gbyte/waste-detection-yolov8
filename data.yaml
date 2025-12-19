@@ -1,0 +1,10 @@
+path: dataset
+train: images/train
+val: images/val
+test: images/test
+
+names:
+  0: plastik
+  1: kertas
+  2: logam
+  3: kaca
