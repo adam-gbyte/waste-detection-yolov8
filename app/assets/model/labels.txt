@@ -1,0 +1,4 @@
+plastik
+kertas
+logam
+kaca

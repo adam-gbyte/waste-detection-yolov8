@@ -1,4 +1,10 @@
 /dataset
 /images
 /runs
+/best_saved_model
+
 yolov8n.pt
+annotations_new.json
+dataset.zip
+runs.zip
+best_saved_model.zip
