@@ -1,6 +1,10 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'main.dart';
+import 'detector.dart';
+import 'preprocess.dart';
+import 'postprocess.dart';
+import 'detection_pointer.dart';
 
 class CameraView extends StatefulWidget {
   const CameraView({super.key});
@@ -11,21 +15,36 @@ class CameraView extends StatefulWidget {
 
 class _CameraViewState extends State<CameraView> {
   late CameraController controller;
+  final detector = Detector();
+  List<Detection> detections = [];
 
   @override
   void initState() {
     super.initState();
-    controller = CameraController(cameras.first, ResolutionPreset.medium);
-    controller.initialize().then((_) {
-      if (!mounted) return;
-      setState(() {});
-    });
+    init();
   }
 
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
+  Future<void> init() async {
+    await detector.load(); // tunggu model siap
+
+    controller = CameraController(
+      cameras.first,
+      ResolutionPreset.medium,
+      enableAudio: false,
+    );
+
+    await controller.initialize();
+    controller.startImageStream(onFrame);
+
+    setState(() {});
+  }
+
+  void onFrame(CameraImage image) async {
+    final rgb = convert(image);
+    final input = preprocess(rgb);
+    final output = detector.run(input);
+    final result = decode(output, 0.3);
+    setState(() => detections = result);
   }
 
   @override
@@ -33,6 +52,12 @@ class _CameraViewState extends State<CameraView> {
     if (!controller.value.isInitialized) {
       return const Center(child: CircularProgressIndicator());
     }
-    return CameraPreview(controller);
+
+    return Stack(
+      children: [
+        CameraPreview(controller),
+        CustomPaint(painter: DetectionPainter(detections)),
+      ],
+    );
   }
 }
