@@ -6,7 +6,7 @@ from ultralytics import YOLO
 
 def parse_args():
     parser = argparse.ArgumentParser(description="YOLOv8 OpenCV Real-Time Detection")
-    parser.add_argument("--model", type=str, default="runs/detect/train/weights/best.pt", help="Path ke model .pt")
+    parser.add_argument("--model", type=str, default="runs/detect/train/weights/last.pt", help="Path ke model .pt")
     parser.add_argument("--source", type=str, default="0", help="0=webcam, path video, atau RTSP URL")
     parser.add_argument("--conf", type=float, default=0.3, help="Confidence threshold")
     parser.add_argument("--imgsz", type=int, default=640, help="Ukuran input model")

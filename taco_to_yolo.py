@@ -14,19 +14,34 @@ OUTPUT = "dataset"
 # KELAS YOLO
 # ======================
 CLASS_MAP = {
+    # plastic
     "Clear plastic bottle": 0,
     "Plastic bottle": 0,
     "Plastic bag": 0,
     "Plastic wrapper": 0,
 
+    # paper
     "Paper": 1,
     "Carton": 1,
 
+    # metal
     "Drink can": 2,
     "Aluminium foil": 2,
     "Metal bottle cap": 2,
 
-    "Glass bottle": 3
+    # glass
+    "Glass bottle": 3,
+    "Broken glass": 3,
+    "Glass jar": 3,
+
+    # organic
+    "Food waste": 4,
+    "Leaves": 4,
+
+    # other
+    "Battery": 5,
+    "Plastic gloves": 5,
+    "Shoe": 5
 }
 
 # ======================
