@@ -3,7 +3,7 @@ import os
 import requests
 from tqdm import tqdm
 
-ANNOTATION_FILE = "annotations.json"
+ANNOTATION_FILE = "waste-detection-yolov8/annotations.json"
 IMAGE_DIR = "images"
 
 os.makedirs(IMAGE_DIR, exist_ok=True)

@@ -6,7 +6,7 @@ import random
 # ======================
 # PATH
 # ======================
-ANNOTATION_FILE = "annotations.json"
+ANNOTATION_FILE = "waste-detection-yolov8/annotations.json"
 IMAGE_ROOT = "images"
 OUTPUT = "dataset"
 
