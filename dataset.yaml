@@ -1,7 +1,10 @@
 path: dataset
+
 train: images/train
 val: images/val
 test: images/test
+
+nc: 6
 
 names:
   0: plastic
